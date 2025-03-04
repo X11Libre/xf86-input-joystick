@@ -91,7 +91,6 @@ jstkParseButtonOption(const char* org,
                       int number,
                       const char* name)
 {
-    char *param;
     int value;
     float fvalue;
     char p[64];
@@ -99,8 +98,7 @@ jstkParseButtonOption(const char* org,
 
     button = &priv->button[number];
 
-    param = xstrdup(org);
-/*    for (tmp = param; *tmp; tmp++) *tmp = tolower(*tmp); */
+    char *param = strdup(org);
 
     if (strcmp(param, "none") == 0) {
         button->mapping = JSTK_MAPPING_NONE;
@@ -176,14 +174,12 @@ jstkParseAxisOption(const char* org,
                     AXIS *axis,
                     const char *name)
 {
-    char *param;
     char *tmp;
     int value;
     float fvalue;
     char p[64];
-    param = xstrdup(org);
-/*    for (tmp     for (tmp = param; *tmp; tmp++) *tmp = tolower(*tmp);
-= param; *tmp; tmp++) *tmp = tolower(*tmp); */
+
+    char *param = xstrdup(org);
 
     if ((tmp=strstr(param, "mode=")) != NULL) {
         if (sscanf(tmp, "mode=%15s", p) == 1) {
