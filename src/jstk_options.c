@@ -179,7 +179,7 @@ jstkParseAxisOption(const char* org,
     float fvalue;
     char p[64];
 
-    char *param = xstrdup(org);
+    char *param = strdup(org);
 
     if ((tmp=strstr(param, "mode=")) != NULL) {
         if (sscanf(tmp, "mode=%15s", p) == 1) {
