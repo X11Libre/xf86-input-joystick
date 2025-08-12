@@ -1,6 +1,6 @@
 /*
- * Copyright 2007-2008 by Sascha Hlusiak. <saschahlusiak@freedesktop.org>     
- *                                                                            
+ * Copyright 2007-2008 by Sascha Hlusiak. <saschahlusiak@freedesktop.org>
+ *
  * Permission to use, copy, modify, distribute, and sell this software and its
  * documentation for any purpose is  hereby granted without fee, provided that
  * the  above copyright   notice appear  in   all  copies and  that both  that
@@ -9,8 +9,8 @@
  * advertising or publicity pertaining to distribution of the software without
  * specific,  written      prior  permission.     Sascha   Hlusiak   makes  no
  * representations about the suitability of this software for any purpose.  It
- * is provided "as is" without express or implied warranty.                   
- *                                                                            
+ * is provided "as is" without express or implied warranty.
+ *
  * SASCHA  HLUSIAK  DISCLAIMS ALL   WARRANTIES WITH REGARD  TO  THIS SOFTWARE,
  * INCLUDING ALL IMPLIED   WARRANTIES OF MERCHANTABILITY  AND   FITNESS, IN NO
  * EVENT  SHALL SASCHA  HLUSIAK  BE   LIABLE   FOR ANY  SPECIAL, INDIRECT   OR
@@ -81,7 +81,7 @@ static int jstkReadData_evdev(JoystickDevPtr joystick,
  * jstkOpenDevice --
  *
  * Open and initialize a joystick device. The device name is
- * taken from JoystickDevPtr 
+ * taken from JoystickDevPtr
  * Returns the filedescriptor, or -1 in case of error
  *
  ***********************************************************************
@@ -108,7 +108,7 @@ jstkOpenDevice_evdev(JoystickDevPtr joystick, Bool probe)
     }
 
     if (ioctl(joystick->fd, EVIOCGVERSION, &driver_version) == -1) {
-        xf86Msg(X_ERROR, "Joystick: ioctl EVIOCGVERSION on '%s' failed: %s\n", 
+        xf86Msg(X_ERROR, "Joystick: ioctl EVIOCGVERSION on '%s' failed: %s\n",
                 joystick->device, strerror(errno));
         jstkCloseDevice_evdev(joystick);
         return -1;
@@ -257,7 +257,7 @@ jstkReadData_evdev(JoystickDevPtr joystick,
     data = (struct jstk_evdev_data*)joystick->devicedata;
 
     DBG(10, if (iev.type)
-        ErrorF("Event (evdev): type: 0x%04X, code: 0x%04X, value: 0x%04X\n", 
+        ErrorF("Event (evdev): type: 0x%04X, code: 0x%04X, value: 0x%04X\n",
                (unsigned int)iev.type,
                (unsigned int)iev.code,
                (int)iev.value));
@@ -284,21 +284,21 @@ jstkReadData_evdev(JoystickDevPtr joystick,
 		 * - 0..256, with a center of 127 (Logitech Dual Action axes)
 		 * - 0..256 with a center of 0 (XBox left/right triggers)
 		 * - -32768..32768 with a center of 0 (XBox axes)
-		 * 
+		 *
 		 * These ranges will ALL be scaled to -32768..32768, with
 		 * the center value to be assumed 0. This is for compatibility
 		 * with the legacy joystick module, which reports values in
 		 * the same range.
-		 * 
-		 * The value is also important for the deadzone, which can be 
+		 *
+		 * The value is also important for the deadzone, which can be
 		 * configured by the user and is in -32768..32768 range.
-		 * 
+		 *
 		 * TODO: how to respect center value, so that that XBox triggers
 		 *       and logitech axes report idle, when not moved?
 		 * TODO: report all values as -1.0f..1.0f, but this would possibly
 		 *       break config file semantics.
 		 */
-		    
+
 		float v = (float) iev.value;
 		v = (v - (float)axis->min) * 65535.0f
 			/ (axis->max - axis->min) - 32768.0f;
@@ -322,8 +322,8 @@ jstkReadData_evdev(JoystickDevPtr joystick,
     default:
         DBG(3, if (iev.type)
                    ErrorF("Unhandled evdev event: type: 0x%04X, code: 0x%04X, "
-                          "value: 0x%04X\n", 
-                  (unsigned int)iev.type, 
+                          "value: 0x%04X\n",
+                  (unsigned int)iev.type,
                   (unsigned int)iev.code,
                   (int)iev.value));
     }

@@ -126,7 +126,7 @@ AC_OUTPUT
 
 # -----------------------------------------------------------------------------
 
-AS_ECHO() 
+AS_ECHO()
 AS_ECHO("Building Linux joystick backend: $linux_backend")
 AS_ECHO("Building Linux evdev backend: $evdev_backend")
 AS_ECHO("Building BSD usbhid backend: $bsd_backend")

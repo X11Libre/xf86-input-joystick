@@ -1,6 +1,6 @@
 /*
- * Copyright 2007-2008 by Sascha Hlusiak. <saschahlusiak@freedesktop.org>     
- *                                                                            
+ * Copyright 2007-2008 by Sascha Hlusiak. <saschahlusiak@freedesktop.org>
+ *
  * Permission to use, copy, modify, distribute, and sell this software and its
  * documentation for any purpose is  hereby granted without fee, provided that
  * the  above copyright   notice appear  in   all  copies and  that both  that
@@ -9,8 +9,8 @@
  * advertising or publicity pertaining to distribution of the software without
  * specific,  written      prior  permission.     Sascha   Hlusiak   makes  no
  * representations about the suitability of this software for any purpose.  It
- * is provided "as is" without express or implied warranty.                   
- *                                                                            
+ * is provided "as is" without express or implied warranty.
+ *
  * SASCHA  HLUSIAK  DISCLAIMS ALL   WARRANTIES WITH REGARD  TO  THIS SOFTWARE,
  * INCLUDING ALL IMPLIED   WARRANTIES OF MERCHANTABILITY  AND   FITNESS, IN NO
  * EVENT  SHALL SASCHA  HLUSIAK  BE   LIABLE   FOR ANY  SPECIAL, INDIRECT   OR
@@ -68,7 +68,7 @@ static int jstkReadData_joystick(JoystickDevPtr joystick,
  * jstkOpenDevice --
  *
  * Open and initialize a joystick device. The device name is
- * taken from JoystickDevPtr 
+ * taken from JoystickDevPtr
  * Returns the filedescriptor, or -1 in case of error
  *
  ***********************************************************************
@@ -90,7 +90,7 @@ jstkOpenDevice_joystick(JoystickDevPtr joystick, Bool probe)
     }
 
     if (ioctl(joystick->fd, JSIOCGVERSION, &driver_version) == -1) {
-        xf86Msg(X_ERROR, "Joystick: ioctl JSIOCGVERSION on '%s' failed: %s\n", 
+        xf86Msg(X_ERROR, "Joystick: ioctl JSIOCGVERSION on '%s' failed: %s\n",
                 joystick->device, strerror(errno));
         jstkCloseDevice(joystick);
         return -1;
@@ -103,28 +103,28 @@ jstkOpenDevice_joystick(JoystickDevPtr joystick, Bool probe)
     }
 
     if (ioctl(joystick->fd, JSIOCGAXES, &axes) == -1) {
-        xf86Msg(X_ERROR, "Joystick: ioctl JSIOCGAXES on '%s' failed: %s\n", 
+        xf86Msg(X_ERROR, "Joystick: ioctl JSIOCGAXES on '%s' failed: %s\n",
                 joystick->device, strerror(errno));
         jstkCloseDevice(joystick);
         return -1;
     }
 
     if (ioctl(joystick->fd, JSIOCGBUTTONS, &buttons) == -1) {
-        xf86Msg(X_ERROR, "Joystick: ioctl JSIOCGBUTTONS on '%s' failed: %s\n", 
+        xf86Msg(X_ERROR, "Joystick: ioctl JSIOCGBUTTONS on '%s' failed: %s\n",
                 joystick->device, strerror(errno));
         jstkCloseDevice(joystick);
         return -1;
     }
 
     if (ioctl(joystick->fd, JSIOCGNAME(128), joy_name) == -1) {
-        xf86Msg(X_ERROR, "Joystick: ioctl JSIOCGNAME on '%s' failed: %s\n", 
+        xf86Msg(X_ERROR, "Joystick: ioctl JSIOCGNAME on '%s' failed: %s\n",
                   joystick->device, strerror(errno));
         jstkCloseDevice(joystick);
         return -1;
     }
 
     if (probe == TRUE) {
-        xf86Msg(X_INFO, "Joystick: %s. %d axes, %d buttons\n", 
+        xf86Msg(X_INFO, "Joystick: %s. %d axes, %d buttons\n",
                 joy_name, axes, buttons);
     }
 
