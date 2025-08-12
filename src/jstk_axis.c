@@ -1,6 +1,6 @@
 /*
- * Copyright 2007-2008 by Sascha Hlusiak. <saschahlusiak@freedesktop.org>     
- *                                                                            
+ * Copyright 2007-2008 by Sascha Hlusiak. <saschahlusiak@freedesktop.org>
+ *
  * Permission to use, copy, modify, distribute, and sell this software and its
  * documentation for any purpose is  hereby granted without fee, provided that
  * the  above copyright   notice appear  in   all  copies and  that both  that
@@ -9,8 +9,8 @@
  * advertising or publicity pertaining to distribution of the software without
  * specific,  written      prior  permission.     Sascha   Hlusiak   makes  no
  * representations about the suitability of this software for any purpose.  It
- * is provided "as is" without express or implied warranty.                   
- *                                                                            
+ * is provided "as is" without express or implied warranty.
+ *
  * SASCHA  HLUSIAK  DISCLAIMS ALL   WARRANTIES WITH REGARD  TO  THIS SOFTWARE,
  * INCLUDING ALL IMPLIED   WARRANTIES OF MERCHANTABILITY  AND   FITNESS, IN NO
  * EVENT  SHALL SASCHA  HLUSIAK  BE   LIABLE   FOR ANY  SPECIAL, INDIRECT   OR
@@ -88,25 +88,25 @@ jstkAxisTimer(OsTimerPtr        timer,
 	     *
 	     * make sure that diagonal movement feels fast. either:
 	     * 1) linear
-	     * 
+	     *
 	     *   f(32768) ~= f(23170) + f(23170)
 	     *   f(32768) ~= a * f(23170)
 	     *          a  = 2.0
 	     *
 	     *   on circular joysticks, the time needed for xy movement is
 	     *   exactly the time needed for x + the time for y separately.
-	     *   absolute diagonal travel speed (in cm/s) is 0.707 times as fast, 
+	     *   absolute diagonal travel speed (in cm/s) is 0.707 times as fast,
 	     *   which feels pretty slow.
 	     *
 	     *   on square joysticks, diagonal travel speed is always 1.41 times
 	     *   faster than orthogonal travel speed. time needed for diagonal
 	     *   movement is always 0.5 times as long as for orthogonal movement.
-	     * 
+	     *
 	     *   the value of a = 2.0 results in a nice, non-linear acceleration.
 	     *
 	     * or
 	     * 2) trigonometric
-	     * 
+	     *
 	     *   f(32768) ~= sqrt(f(23170)^2 + f(23170)^2))
 	     *   f(32768) ~= a * f(23170)
 	     *           a = 1.414
@@ -115,22 +115,22 @@ jstkAxisTimer(OsTimerPtr        timer,
 	     *   (in cm/s) is now the same for both linear and diagonal movement,
 	     *   which feels natural. moving diagonally takes 0.707 times the time
 	     *   of moving orthogonally.
-	     * 
+	     *
 	     *   on square joysticks, values are as in 1)
-	     * 
+	     *
 	     *   the value of a = 1.414 results in linear acceleration, which feels
 	     *   too slow.
-	     * 
+	     *
 	     * to maintain non-linear acceleration, make sure that:
 	     *
-	     *   a >>= 1.414 
+	     *   a >>= 1.414
 	     *
 	     * the following formula achieves results in between,
 	     * so it should feel natural on both devices while maintaining a
 	     * nice acceleration:
-	     * 
+	     *
 	     *   f(32768) ~= 1.620 * f(23170)
-	     * 
+	     *
 	     * TODO: make this simpler by using only values -1.0..1.0 and
 	     *       provide acceleration graphs.
 	     */
@@ -186,7 +186,7 @@ jstkAxisTimer(OsTimerPtr        timer,
                 movezy += (int)axis->subpixel;
                 break;
 
-            case JSTK_MAPPING_KEY: if ((priv->keys_enabled == TRUE) && 
+            case JSTK_MAPPING_KEY: if ((priv->keys_enabled == TRUE) &&
                                   (priv->axis[i].type == JSTK_TYPE_BYVALUE)) {
                 int num;
                 num = abs((int)axis->subpixel);
@@ -215,7 +215,7 @@ jstkAxisTimer(OsTimerPtr        timer,
         float p2;
 
         if (priv->button[i].currentspeed < 100.0f)
-            priv->button[i].currentspeed = 
+            priv->button[i].currentspeed =
                 (priv->button[i].currentspeed + 3.0f) * 1.07f - 3.0f;
         p1 = priv->button[i].currentspeed * (float)NEXTTIMER / 180.0f *
             priv->button[i].amplify;
@@ -280,9 +280,9 @@ jstkAxisTimer(OsTimerPtr        timer,
     }
 
     while (movezx >= 1) {  /* right */
-        xf86PostButtonEvent(device, 0, 7, 
+        xf86PostButtonEvent(device, 0, 7,
                             1, 0, 0);
-        xf86PostButtonEvent(device, 0, 7, 
+        xf86PostButtonEvent(device, 0, 7,
                             0, 0, 0);
         movezx -= 1;
     }
@@ -335,7 +335,7 @@ jstkStartAxisTimer(InputInfoPtr device, int number)
 
     DBG(2, ErrorF("Starting Axis Timer (triggered by axis %d)\n", number));
     priv->timer = TimerSet(
-        priv->timer, 
+        priv->timer,
         0,         /* Relative */
         1,         /* What about NOW? */
         jstkAxisTimer,
@@ -376,7 +376,7 @@ jstkStartButtonAxisTimer(InputInfoPtr device, int number)
 
     DBG(2, ErrorF("Starting Axis Timer (triggered by button %d)\n", number));
     priv->timer = TimerSet(
-        priv->timer, 
+        priv->timer,
         0,         /* Relative */
         1,         /* What about NOW? */
         jstkAxisTimer,
@@ -388,7 +388,7 @@ jstkStartButtonAxisTimer(InputInfoPtr device, int number)
  * jstkHandleAbsoluteAxis --
  *
  * Sums up absolute movement of all axes and sets the cursor to the
- * desired Position on the screen. 
+ * desired Position on the screen.
  *
  ***********************************************************************
  */
@@ -401,12 +401,12 @@ jstkHandleAbsoluteAxis(InputInfoPtr device, int number)
     x=0;
     y=0;
 
-    for (i=0; i<MAXAXES; i++) 
+    for (i=0; i<MAXAXES; i++)
         if (priv->axis[i].type == JSTK_TYPE_ABSOLUTE)
     {
         float rel;
         int dif;
-        
+
     	rel = 0.0f;
         if (priv->axis[i].value > +priv->axis[i].deadzone)
             rel = (priv->axis[i].value - priv->axis[i].deadzone);
@@ -480,24 +480,24 @@ jstkPWMAxisTimer(OsTimerPtr        timer,
         DBG(8, ErrorF("PWM Axis %d value %d (old %d)\n", i, axis->value, axis->oldvalue));
 
         /* Force key_high down if centered */
-        if ((axis->value <= 0) && 
+        if ((axis->value <= 0) &&
             (axis->oldvalue > 0) &&
-            (axis->key_isdown)) 
+            (axis->key_isdown))
         {
             DBG(7, ErrorF("PWM Axis %d jumped over. Forcing keys_high up.\n", i));
-            jstkGenerateKeys(priv->keyboard_device, 
+            jstkGenerateKeys(priv->keyboard_device,
                 axis->keys_high,
                 0);
             axis->key_isdown = 0;
         }
 
         /* Force key_low down if centered */
-        if ((axis->value >= 0) && 
+        if ((axis->value >= 0) &&
             (axis->oldvalue < 0) &&
             (axis->key_isdown))
         {
             DBG(7, ErrorF("PWM Axis %d jumped over. Forcing keys_low up.\n", i));
-            jstkGenerateKeys(priv->keyboard_device, 
+            jstkGenerateKeys(priv->keyboard_device,
                 axis->keys_low,
                 0);
             axis->key_isdown = 0;
@@ -544,7 +544,7 @@ jstkPWMAxisTimer(OsTimerPtr        timer,
                         axis->key_isdown);
                 }
                 nexttimer = 0;
-            } else if (time_on > 600.0f) { 
+            } else if (time_on > 600.0f) {
                 /* Might as well just have it up forever */
                 DBG(7, ErrorF("PWM Axis %d down time too long (%.0fms). Forcing down)\n", i, time_on));
                 if (axis->key_isdown == 0) {
@@ -598,10 +598,10 @@ jstkHandlePWMAxis(InputInfoPtr device, int number)
 
     priv->axis[number].timerrunning = TRUE;
 
-    DBG(2, ErrorF("Starting PWM Axis Timer (triggered by axis %d, value %d)\n", 
+    DBG(2, ErrorF("Starting PWM Axis Timer (triggered by axis %d, value %d)\n",
                number, priv->axis[number].value));
     priv->axis[number].timer = TimerSet(
-        priv->axis[number].timer, 
+        priv->axis[number].timer,
         0,         /* Relative */
         1,         /* What about NOW? */
         jstkPWMAxisTimer,

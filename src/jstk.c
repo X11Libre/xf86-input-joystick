@@ -1,7 +1,7 @@
 /*
- * Copyright 2007-2011 by Sascha Hlusiak. <saschahlusiak@freedesktop.org>     
- * Copyright 1995-1999 by Frederic Lepied, France. <Lepied@XFree86.org>       
- *                                                                            
+ * Copyright 2007-2011 by Sascha Hlusiak. <saschahlusiak@freedesktop.org>
+ * Copyright 1995-1999 by Frederic Lepied, France. <Lepied@XFree86.org>
+ *
  * Permission to use, copy, modify, distribute, and sell this software and its
  * documentation for any purpose is  hereby granted without fee, provided that
  * the  above copyright   notice appear  in   all  copies and  that both  that
@@ -10,8 +10,8 @@
  * advertising or publicity pertaining to distribution of the software without
  * specific,  written      prior  permission.  The copyright holders  make  no
  * representations about the suitability of this software for any purpose.  It
- * is provided "as is" without express or implied warranty.                   
- *                                                                            
+ * is provided "as is" without express or implied warranty.
+ *
  * THE COPYRIGHT HOLDERS DISCLAIM ALL WARRANTIES WITH REGARD TO THIS SOFTWARE,
  * INCLUDING ALL IMPLIED   WARRANTIES OF MERCHANTABILITY  AND   FITNESS, IN NO
  * EVENT  SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY SPECIAL, INDIRECT   OR
@@ -142,7 +142,7 @@ jstkReadProc(InputInfoPtr pInfo)
     JoystickDevPtr priv = pInfo->private;
 
     do {
-        if ((priv->read_proc == NULL) || 
+        if ((priv->read_proc == NULL) ||
             ((r=priv->read_proc(priv, &event, &number))==0)) {
             xf86Msg(X_WARNING, "JOYSTICK: Read failed. Deactivating device.\n");
 
@@ -153,8 +153,8 @@ jstkReadProc(InputInfoPtr pInfo)
 
         /* A button's status changed */
         if (event == EVENT_BUTTON) {
-            DBG(4, ErrorF("Button %d %s. Mapping: %d\n", number, 
-                (priv->button[number].pressed == 0) ? "released" : "pressed", 
+            DBG(4, ErrorF("Button %d %s. Mapping: %d\n", number,
+                (priv->button[number].pressed == 0) ? "released" : "pressed",
                 priv->button[number].mapping));
 
             switch (priv->button[number].mapping) {
@@ -170,7 +170,7 @@ jstkReadProc(InputInfoPtr pInfo)
             case JSTK_MAPPING_Y:
             case JSTK_MAPPING_ZX:
             case JSTK_MAPPING_ZY:
-                if (priv->button[number].pressed == 0) 
+                if (priv->button[number].pressed == 0)
                     priv->button[number].currentspeed = 1.0;
                 else if (priv->mouse_enabled == TRUE)
                     jstkStartButtonAxisTimer(pInfo, number);
@@ -178,8 +178,8 @@ jstkReadProc(InputInfoPtr pInfo)
 
             case JSTK_MAPPING_KEY:
                 if (priv->keys_enabled == TRUE)
-                    jstkGenerateKeys(priv->keyboard_device, 
-                                     priv->button[number].keys, 
+                    jstkGenerateKeys(priv->keyboard_device,
+                                     priv->button[number].keys,
                                      priv->button[number].pressed);
                 break;
 
@@ -187,7 +187,7 @@ jstkReadProc(InputInfoPtr pInfo)
                 priv->amplify = 1.0;
                 /* Calculate new amplify value by multiplying them all */
                 for (i=0; i<MAXAXES; i++) {
-                    if ((priv->button[i].pressed) && 
+                    if ((priv->button[i].pressed) &&
                         (priv->button[i].mapping == JSTK_MAPPING_SPEED_MULTIPLY))
                         priv->amplify *= priv->button[i].amplify;
                 }
@@ -196,7 +196,7 @@ jstkReadProc(InputInfoPtr pInfo)
 
             case JSTK_MAPPING_DISABLE:
                 if (priv->button[number].pressed == 1) {
-                    if ((priv->mouse_enabled == TRUE) || 
+                    if ((priv->mouse_enabled == TRUE) ||
                         (priv->keys_enabled == TRUE))
                     {
                         priv->mouse_enabled = FALSE;
@@ -211,19 +211,19 @@ jstkReadProc(InputInfoPtr pInfo)
                 break;
             case JSTK_MAPPING_DISABLE_MOUSE:
                 if (priv->button[number].pressed == 1) {
-                    if (priv->mouse_enabled == TRUE) 
+                    if (priv->mouse_enabled == TRUE)
                         priv->mouse_enabled = FALSE;
                     else priv->mouse_enabled = TRUE;
-                    DBG(2, ErrorF("Mouse events %s\n", 
+                    DBG(2, ErrorF("Mouse events %s\n",
                         priv->mouse_enabled ? "enabled" : "disabled"));
                 }
                 break;
             case JSTK_MAPPING_DISABLE_KEYS:
                 if (priv->button[number].pressed == 1) {
-                    if (priv->keys_enabled == TRUE) 
+                    if (priv->keys_enabled == TRUE)
                         priv->keys_enabled = FALSE;
                     else priv->keys_enabled = TRUE;
-                    DBG(2, ErrorF("Keyboard events %s\n", 
+                    DBG(2, ErrorF("Keyboard events %s\n",
                         priv->mouse_enabled ? "enabled" : "disabled"));
                 }
                 break;
@@ -234,10 +234,10 @@ jstkReadProc(InputInfoPtr pInfo)
         }
 
         /* An axis was moved */
-        if ((event == EVENT_AXIS) && 
+        if ((event == EVENT_AXIS) &&
             (priv->axis[number].type != JSTK_TYPE_NONE))
         {
-            DBG(5, ErrorF("Axis %d moved to %d. Type: %d, Mapping: %d\n", 
+            DBG(5, ErrorF("Axis %d moved to %d. Type: %d, Mapping: %d\n",
                           number,
                           priv->axis[number].value,
                           priv->axis[number].type,
@@ -344,7 +344,7 @@ jstkDeviceControlProc(DeviceIntPtr       pJstk,
         xorg_btn_labels[7] = XIGetKnownProperty(BTN_LABEL_PROP_BTN_SIDE);
         xorg_btn_labels[8] = XIGetKnownProperty(BTN_LABEL_PROP_BTN_EXTRA);
         xorg_btn_labels[9] = XIGetKnownProperty(BTN_LABEL_PROP_BTN_FORWARD);
-        xorg_btn_labels[10] = XIGetKnownProperty(BTN_LABEL_PROP_BTN_BACK);        
+        xorg_btn_labels[10] = XIGetKnownProperty(BTN_LABEL_PROP_BTN_BACK);
 
         for (m=0; m<=BUTTONMAP_SIZE; m++) {
             if (m <= 10) {
@@ -354,7 +354,7 @@ jstkDeviceControlProc(DeviceIntPtr       pJstk,
         }
 
 
-        if (InitButtonClassDeviceStruct(pJstk, BUTTONMAP_SIZE, 
+        if (InitButtonClassDeviceStruct(pJstk, BUTTONMAP_SIZE,
             btn_labels,
             buttonmap) == FALSE) {
             ErrorF("unable to allocate Button class device\n");
@@ -364,7 +364,7 @@ jstkDeviceControlProc(DeviceIntPtr       pJstk,
             return !Success;
 
         m = 2;
-        for (i=0; i<MAXAXES; i++) 
+        for (i=0; i<MAXAXES; i++)
             if (priv->axis[i].valuator != -1)
         {
             DBG(3, ErrorF("Axis %d will be valuator %d\n", i, m));
@@ -376,7 +376,7 @@ jstkDeviceControlProc(DeviceIntPtr       pJstk,
         if (InitValuatorClassDeviceStruct(pJstk, m, axes_labels,
                                           GetMotionHistorySize(),
                                           Relative) == FALSE) {
-            ErrorF("unable to allocate Valuator class device\n"); 
+            ErrorF("unable to allocate Valuator class device\n");
             return !Success;
         } else {
             InitValuatorAxisStruct(pJstk,
@@ -397,10 +397,10 @@ jstkDeviceControlProc(DeviceIntPtr       pJstk,
                                    0, /* min_res */
                                    0, /* max_res */
                                    Relative);
-            for (i=0; i<MAXAXES; i++) 
+            for (i=0; i<MAXAXES; i++)
                 if (priv->axis[i].valuator != -1)
             {
-                
+
                 InitValuatorAxisStruct(pJstk,
                                        priv->axis[i].valuator,
                                        axes_labels[i],
@@ -421,7 +421,7 @@ jstkDeviceControlProc(DeviceIntPtr       pJstk,
     }
 
     case DEVICE_ON:
-        DBG(1, ErrorF("jstkDeviceControlProc  what=ON name=%s\n", 
+        DBG(1, ErrorF("jstkDeviceControlProc  what=ON name=%s\n",
                       priv->device));
 
         if (jstkOpenDevice(priv, FALSE) != -1) {
@@ -435,7 +435,7 @@ jstkDeviceControlProc(DeviceIntPtr       pJstk,
     case DEVICE_CLOSE:
         if (!pJstk->public.on)
             break;
-        DBG(1, ErrorF("jstkDeviceControlProc  what=%s\n", 
+        DBG(1, ErrorF("jstkDeviceControlProc  what=%s\n",
             (what == DEVICE_CLOSE) ? "CLOSE" : "OFF"));
 
         if (priv->timerrunning == TRUE) {
@@ -595,12 +595,12 @@ jstkCorePreInit(InputDriverPtr drv, InputInfoPtr pInfo, int flags)
 #if DEBUG
     debug_level = xf86SetIntOption(pInfo->options, "DebugLevel", 0);
     if (debug_level > 0) {
-        xf86Msg(X_CONFIG, "%s: debug level set to %d\n", 
+        xf86Msg(X_CONFIG, "%s: debug level set to %d\n",
                 pInfo->name, debug_level);
     }
 #else
     if (xf86SetIntOption(pInfo->options, "DebugLevel", 0) != 0) {
-        xf86Msg(X_WARNING, "%s: DebugLevel: Compiled without debugging support!\n", 
+        xf86Msg(X_WARNING, "%s: DebugLevel: Compiled without debugging support!\n",
                 pInfo->name);
     }
 #endif
@@ -616,7 +616,7 @@ jstkCorePreInit(InputDriverPtr drv, InputInfoPtr pInfo, int flags)
         if (s != NULL) {
             jstkParseButtonOption(s, priv, i, pInfo->name);
         }
-        DBG(1, xf86Msg(X_CONFIG, "Button %d mapped to %d\n", i+1, 
+        DBG(1, xf86Msg(X_CONFIG, "Button %d mapped to %d\n", i+1,
                        priv->button[i].mapping));
     }
 
@@ -628,8 +628,8 @@ jstkCorePreInit(InputDriverPtr drv, InputInfoPtr pInfo, int flags)
         if (s != NULL) {
             jstkParseAxisOption(s, priv, &priv->axis[i], pInfo->name);
         }
-        DBG(1, xf86Msg(X_CONFIG, 
-                       "Axis %d type is %d, mapped to %d, amplify=%.3f\n", i+1, 
+        DBG(1, xf86Msg(X_CONFIG,
+                       "Axis %d type is %d, mapped to %d, amplify=%.3f\n", i+1,
                        priv->axis[i].type,
                        priv->axis[i].mapping,
                        priv->axis[i].amplify));
@@ -659,7 +659,7 @@ SetupProc_fail:
  * This is a bit tricky, because the keyboard device and the main device
  * share the same private data, which must be freed only once, which is done
  * by the main device.
- * 
+ *
  *
  ***************************************************************************
  */
@@ -673,7 +673,7 @@ jstkCoreUnInit(InputDriverPtr    drv,
 	JoystickDevPtr priv = (JoystickDevPtr) pInfo->private;
 	if (priv->keyboard_device == pInfo) {
 	    /* this is the keyboard device */
-	    /* Unlink from private data to notify that the 
+	    /* Unlink from private data to notify that the
 	     * keyboard device is no more, but don't free */
 	    priv->keyboard_device = NULL;
 	} else {
@@ -682,7 +682,7 @@ jstkCoreUnInit(InputDriverPtr    drv,
 	       private data is gone */
 	    if (priv->keyboard_device)
 		priv->keyboard_device->private = NULL;
-	    
+
 	    free (priv);
 	}
     }

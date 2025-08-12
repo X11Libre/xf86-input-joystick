@@ -1,6 +1,6 @@
 /*
- * Copyright 2007-2008 by Sascha Hlusiak. <saschahlusiak@freedesktop.org>     
- *                                                                            
+ * Copyright 2007-2008 by Sascha Hlusiak. <saschahlusiak@freedesktop.org>
+ *
  * Permission to use, copy, modify, distribute, and sell this software and its
  * documentation for any purpose is  hereby granted without fee, provided that
  * the  above copyright   notice appear  in   all  copies and  that both  that
@@ -9,8 +9,8 @@
  * advertising or publicity pertaining to distribution of the software without
  * specific,  written      prior  permission.     Sascha   Hlusiak   makes  no
  * representations about the suitability of this software for any purpose.  It
- * is provided "as is" without express or implied warranty.                   
- *                                                                            
+ * is provided "as is" without express or implied warranty.
+ *
  * SASCHA  HLUSIAK  DISCLAIMS ALL   WARRANTIES WITH REGARD  TO  THIS SOFTWARE,
  * INCLUDING ALL IMPLIED   WARRANTIES OF MERCHANTABILITY  AND   FITNESS, IN NO
  * EVENT  SHALL SASCHA  HLUSIAK  BE   LIABLE   FOR ANY  SPECIAL, INDIRECT   OR
@@ -190,7 +190,7 @@ jstkOpenDevice_bsd(JoystickDevPtr joystick, Bool probe)
 
     bsddata->hotdata = 0;
     if (probe == TRUE) {
-        xf86Msg(X_INFO, "Joystick: %d buttons, %d axes\n", 
+        xf86Msg(X_INFO, "Joystick: %d buttons, %d axes\n",
                 joystick->num_buttons, joystick->num_axes);
     }
 
@@ -242,7 +242,7 @@ jstkReadData_bsd(JoystickDevPtr joystick,
              int *number)
 {
     int j,d;
-    struct jstk_bsd_hid_data *bsddata = 
+    struct jstk_bsd_hid_data *bsddata =
         (struct jstk_bsd_hid_data*)(joystick->devicedata);
 
     if (event != NULL) *event = EVENT_NONE;
@@ -260,9 +260,9 @@ jstkReadData_bsd(JoystickDevPtr joystick,
     for (j=0; j<joystick->num_axes - (bsddata->hats * 2); j++) {
         d = hid_get_data(bsddata->data_buf, &bsddata->axis_item[j]);
         /* Scale the range to our expected range of -32768 to 32767 */
-        d = d - (bsddata->axis_item[j].logical_maximum 
+        d = d - (bsddata->axis_item[j].logical_maximum
                  - bsddata->axis_item[j].logical_minimum) / 2;
-        d = d * 65536 / (bsddata->axis_item[j].logical_maximum 
+        d = d * 65536 / (bsddata->axis_item[j].logical_maximum
                          - bsddata->axis_item[j].logical_minimum);
         if (abs(d) < joystick->axis[j].deadzone) d = 0;
         if (d != joystick->axis[j].value) {
@@ -275,13 +275,13 @@ jstkReadData_bsd(JoystickDevPtr joystick,
 
     for (j=0; j<bsddata->hats; j++) {
         int a;
-        int v1_data[9] = 
+        int v1_data[9] =
             { 0, 32767, 32767, 32767, 0, -32768, -32768, -32768, 0 };
         int v2_data[9] =
             { -32768, -32768, 0, 32767, 32767, 32767, 0, -32767, 0 };
 
         a = j*2 + joystick->num_axes - bsddata->hats *2;
-        d = hid_get_data(bsddata->data_buf, &bsddata->hat_item[j]) 
+        d = hid_get_data(bsddata->data_buf, &bsddata->hat_item[j])
             - bsddata->hat_item[j].logical_minimum;
         if (joystick->axis[a].value != v1_data[d]) {
             joystick->axis[a].value = v1_data[d];

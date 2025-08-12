@@ -1,6 +1,6 @@
 /*
- * Copyright 2007-2008 by Sascha Hlusiak. <saschahlusiak@freedesktop.org>     
- *                                                                            
+ * Copyright 2007-2008 by Sascha Hlusiak. <saschahlusiak@freedesktop.org>
+ *
  * Permission to use, copy, modify, distribute, and sell this software and its
  * documentation for any purpose is  hereby granted without fee, provided that
  * the  above copyright   notice appear  in   all  copies and  that both  that
@@ -9,8 +9,8 @@
  * advertising or publicity pertaining to distribution of the software without
  * specific,  written      prior  permission.     Sascha   Hlusiak   makes  no
  * representations about the suitability of this software for any purpose.  It
- * is provided "as is" without express or implied warranty.                   
- *                                                                            
+ * is provided "as is" without express or implied warranty.
+ *
  * SASCHA  HLUSIAK  DISCLAIMS ALL   WARRANTIES WITH REGARD  TO  THIS SOFTWARE,
  * INCLUDING ALL IMPLIED   WARRANTIES OF MERCHANTABILITY  AND   FITNESS, IN NO
  * EVENT  SHALL SASCHA  HLUSIAK  BE   LIABLE   FOR ANY  SPECIAL, INDIRECT   OR
@@ -119,7 +119,7 @@ jstkSetProperty(DeviceIntPtr pJstk, Atom atom, XIPropertyValuePtr val,
         if (val->size != priv->num_axes || val->format != 32 || val->type != XA_INTEGER)
             return BadMatch;
         values = (INT32*)val->data;
-        for (i =0; i<val->size; i++) /* Fail, if one value is out of range */ 
+        for (i =0; i<val->size; i++) /* Fail, if one value is out of range */
             if (values[i] > 30000 || values[i] < -30000)
                 return BadValue;
         if (!checkonly)

@@ -10,13 +10,13 @@
 	<append key="info.capabilities" type="strlist">input.keys</append>
 	<append key="info.capabilities" type="strlist">input.mouse</append>
 	-->
-	
+
         <merge key="input.x11_driver" type="string">joystick</merge>
-	
-        <!-- Arbitrary options can be passed to the driver using 
+
+        <!-- Arbitrary options can be passed to the driver using
 	     the input.x11_options property since xorg-server-1.5. -->
 
-	<!-- DEFAULT CONFIGURATION 
+	<!-- DEFAULT CONFIGURATION
 	     Change this to override the default settings of the input driver.
 	-->
         <merge key="input.x11_options.MapButton1" type="string">button=1</merge>

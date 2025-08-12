@@ -1,6 +1,6 @@
 /*
  * Copyright 2007 - 2008    by Sascha Hlusiak. <saschahlusiak@freedesktop.org>
- *                                                                            
+ *
  * Permission to use, copy, modify, distribute, and sell this software and its
  * documentation for any purpose is  hereby granted without fee, provided that
  * the  above copyright   notice appear  in   all  copies and  that both  that
@@ -9,8 +9,8 @@
  * advertising or publicity pertaining to distribution of the software without
  * specific,  written      prior  permission.     Sascha   Hlusiak   makes  no
  * representations about the suitability of this software for any purpose.  It
- * is provided "as is" without express or implied warranty.                   
- *                                                                            
+ * is provided "as is" without express or implied warranty.
+ *
  * SASCHA  HLUSIAK  DISCLAIMS ALL   WARRANTIES WITH REGARD  TO  THIS SOFTWARE,
  * INCLUDING ALL IMPLIED   WARRANTIES OF MERCHANTABILITY  AND   FITNESS, IN NO
  * EVENT  SHALL SASCHA  HLUSIAK  BE   LIABLE   FOR ANY  SPECIAL, INDIRECT   OR
@@ -45,7 +45,7 @@
  * jstkGetAxisMapping --
  *
  * Parses strings like:
- * x, +y, -zx, 3x, 3.5zy, -8x 
+ * x, +y, -zx, 3x, 3.5zy, -8x
  * And returns the mapping and stores the optional factor
  * In the float referenced by 'value'
  *
@@ -53,7 +53,7 @@
  */
 
 static JSTK_MAPPING
-jstkGetAxisMapping(float *value, const char* param, const char* name) 
+jstkGetAxisMapping(float *value, const char* param, const char* name)
 {
     if (sscanf(param, "%f", value)==0) {
         if (param[0] == '-')
@@ -104,7 +104,7 @@ jstkParseButtonOption(const char* org,
         button->mapping = JSTK_MAPPING_NONE;
     } else if (sscanf(param, "button=%d", &value) == 1) {
         if (value<0 || value >BUTTONMAP_SIZE) {
-            xf86Msg(X_WARNING, "%s: button number out of range (0..%d): %d.\n", 
+            xf86Msg(X_WARNING, "%s: button number out of range (0..%d): %d.\n",
                     name, BUTTONMAP_SIZE,  value);
         } else {
             button->mapping      = JSTK_MAPPING_BUTTON;
@@ -117,7 +117,7 @@ jstkParseButtonOption(const char* org,
         button->amplify = fvalue;
         button->currentspeed = 1.0f;
         if (button->mapping == JSTK_MAPPING_NONE)
-            xf86Msg(X_WARNING, "%s: error parsing axis: %s.\n", 
+            xf86Msg(X_WARNING, "%s: error parsing axis: %s.\n",
                     name, p);
     } else if (sscanf(param, "amplify=%f", &fvalue) == 1) {
         button->mapping = JSTK_MAPPING_SPEED_MULTIPLY;
@@ -136,7 +136,7 @@ jstkParseButtonOption(const char* org,
             key = strtol(current, NULL, 0);
             DBG(3, ErrorF("Parsed %s to %d\n", current, key));
             if (key == 0)
-                xf86Msg(X_WARNING, "%s: error parsing key value: %s.\n", 
+                xf86Msg(X_WARNING, "%s: error parsing key value: %s.\n",
                         name, current);
             else {
                 button->keys[value] = key;
@@ -150,7 +150,7 @@ jstkParseButtonOption(const char* org,
     } else if (strcmp(param, "disable-keys") == 0) {
         button->mapping = JSTK_MAPPING_DISABLE_KEYS;
     } else {
-        xf86Msg(X_WARNING, "%s: error parsing button parameter.\n", 
+        xf86Msg(X_WARNING, "%s: error parsing button parameter.\n",
                 name);
     }
     free(param);
@@ -169,7 +169,7 @@ jstkParseButtonOption(const char* org,
  */
 
 void
-jstkParseAxisOption(const char* org, 
+jstkParseAxisOption(const char* org,
                     JoystickDevPtr priv,
                     AXIS *axis,
                     const char *name)
@@ -195,10 +195,10 @@ jstkParseAxisOption(const char* org,
                 axis->type = JSTK_TYPE_NONE;
             } else {
                 axis->type = JSTK_TYPE_NONE;
-                xf86Msg(X_WARNING, "%s: \"%s\": error parsing mode.\n", 
+                xf86Msg(X_WARNING, "%s: \"%s\": error parsing mode.\n",
                         name, param);
             }
-        } else xf86Msg(X_WARNING, "%s: \"%s\": error parsing mode.\n", 
+        } else xf86Msg(X_WARNING, "%s: \"%s\": error parsing mode.\n",
                        name, param);
     }
 
@@ -233,7 +233,7 @@ jstkParseAxisOption(const char* org,
             p[30]='\0';
             current = p;
             axis->mapping = JSTK_MAPPING_KEY;
-            for (value = 0; value < MAXKEYSPERBUTTON; value++) 
+            for (value = 0; value < MAXKEYSPERBUTTON; value++)
                 if (current != NULL) {
                     next = strchr(current, ',');
 		    if (!next) next = strchr(current, '+');
@@ -242,7 +242,7 @@ jstkParseAxisOption(const char* org,
                     key = strtol(current, NULL, 0);
                     DBG(3, ErrorF("Parsed %s to %d\n", current, key));
                     if (key == 0)
-                        xf86Msg(X_WARNING, "%s: error parsing keylow value: %s.\n", 
+                        xf86Msg(X_WARNING, "%s: error parsing keylow value: %s.\n",
                                 name, current);
                     else {
                         axis->keys_low[value] = key;
@@ -259,7 +259,7 @@ jstkParseAxisOption(const char* org,
             p[30]='\0';
             current = p;
             axis->mapping = JSTK_MAPPING_KEY;
-            for (value = 0; value < MAXKEYSPERBUTTON; value++) 
+            for (value = 0; value < MAXKEYSPERBUTTON; value++)
                 if (current != NULL) {
                     next = strchr(current, ',');
                     if (!next) next = strchr(current, '+');
@@ -268,7 +268,7 @@ jstkParseAxisOption(const char* org,
                     key = strtol(current, NULL, 0);
                     DBG(3, ErrorF("Parsed %s to %d\n", current, key));
                     if (key == 0)
-                        xf86Msg(X_WARNING, "%s: error parsing keyhigh value: %s.\n", 
+                        xf86Msg(X_WARNING, "%s: error parsing keyhigh value: %s.\n",
                                 name, current);
                     else {
                         axis->keys_high[value] = key;
@@ -282,11 +282,11 @@ jstkParseAxisOption(const char* org,
         if (sscanf(tmp, "deadzone=%d", &value) == 1) {
             value = (value < 0) ? (-value) : (value);
             if (value > 30000)
-                xf86Msg(X_WARNING, 
-                        "%s: deadzone of %d seems unreasonable. Ignored.\n", 
+                xf86Msg(X_WARNING,
+                        "%s: deadzone of %d seems unreasonable. Ignored.\n",
                         name, value);
             else axis->deadzone = value;
-        }else xf86Msg(X_WARNING, "%s: error parsing deadzone.\n", 
+        }else xf86Msg(X_WARNING, "%s: error parsing deadzone.\n",
                       name);
     }
     free(param);
