@@ -23,7 +23,7 @@
 # Initialize Autoconf
 AC_PREREQ([2.60])
 AC_INIT([xlibre-xf86-input-joystick],
-        [1.6.4],
+        [1.6.5],
         [https://github.com/X11Libre/xf86-input-joystick/issues],
         [xlibre-xf86-input-joystick])
 AC_CONFIG_SRCDIR([Makefile.am])
