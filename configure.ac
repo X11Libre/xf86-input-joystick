@@ -60,7 +60,7 @@ AC_SUBST([DRIVER_NAME])
 PKG_PROG_PKG_CONFIG([0.25])
 AC_ARG_WITH(xorg-module-dir,
             AS_HELP_STRING([--with-xorg-module-dir=DIR],
-                           [Default xorg module directory]),
+                           [Default XLibre module directory]),
             [moduledir="$withval"],
             [moduledir=`$PKG_CONFIG --variable=moduledir xorg-server`])
 inputdir=${moduledir}/input
@@ -70,7 +70,7 @@ AC_SUBST(inputdir)
 # X Server SDK location is required to install joystick header files
 AC_ARG_WITH(sdkdir,
             AS_HELP_STRING([--with-sdkdir=<path>],
-                           [Xorg X Server sdk headers (default is autodetected)]),
+                           [XLibre X Server sdk headers (default is autodetected)]),
             [sdkdir="$withval"],
             [sdkdir=`$PKG_CONFIG --variable=sdkdir xorg-server`])
 AC_SUBST(sdkdir)
