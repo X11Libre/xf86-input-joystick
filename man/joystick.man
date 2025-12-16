@@ -2,7 +2,7 @@
 .ds q \N'34'
 .TH JOYSTICK __drivermansuffix__ 2012-10-03 __vendorversion__
 .SH NAME
-joystick \- Xorg input driver for using a joystick as a mouse
+joystick \- XLibre input driver for using a joystick as a mouse
 .SH SYNOPSIS
 Snippet for xorg.conf.d(5):
 .sp
@@ -17,7 +17,7 @@ Snippet for xorg.conf.d(5):
 .fi
 .SH DESCRIPTION
 .B joystick
-is an Xorg input driver for controlling the pointer with a
+is an XLibre input driver for controlling the pointer with a
 joystick device.
 .TP 3
 Use this driver, if you want to
@@ -89,7 +89,7 @@ Sets the auto repeat behaviour for key events.
 is the time in milliseconds before a key starts repeating.
 .I rate
 is the number of times a key repeats per second.
-Default: Xorg default
+Default: XLibre default
 .TP 7
 .BI "Option \*qDebugLevel\*q \*q" integer \*q
 Controls the verbosity of the driver for debugging purposes.
@@ -238,7 +238,7 @@ The exact intervals may vary and can be adjusted with the
 parameter.
 If the axis is deflected by 100%, there will only be one keydown event,
 so the key is considered down all the time.
-The keys will be autorepeated according to the Xorg keyboard settings.
+The keys will be autorepeated according to the XLibre keyboard settings.
 .IP
 See special section about key events below.
 .TP 7
@@ -383,7 +383,7 @@ The autorepeat speed of the first axis will be
 half the speed of that of the second axis.
 The keys for the third and fourth axis are generated once when
 the axis moves out of the deadzone and when it moves back into the deadzone.
-Xorg will autorepeat those keys according to current keyboard settings.
+XLibre will autorepeat those keys according to current keyboard settings.
 .SH "XI2 Events"
 If you only care about raw valuator events instead of using the joystick to
 control the cursor, consider using the
@@ -441,7 +441,7 @@ An example hal policy file is still provided in
 to be placed in
 .IR /etc/hal/fdi/policy .
 .SH "SEE ALSO"
-.BR Xorg (__appmansuffix__),
+.BR XLibre (__appmansuffix__),
 .BR xorg.conf (__filemansuffix__),
 .BR xorg.conf.d (5),
 .BR Xserver (__appmansuffix__),
