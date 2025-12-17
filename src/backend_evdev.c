@@ -25,9 +25,7 @@
  * This provides the backend for Linux evdev devices.
  * Devices are usually /dev/input/event?
  **/
-#ifdef HAVE_CONFIG_H
 #include "config.h"
-#endif
 
 #include <linux/input.h>
 
