@@ -26,9 +26,6 @@ DISTCHECK_CONFIGURE_FLAGS = --with-xorg-module-dir='$${libdir}/xorg/modules' \
 SUBDIRS = src man config include
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
-pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = xorg-joystick.pc
-
 .PHONY: ChangeLog INSTALL
 
 INSTALL:

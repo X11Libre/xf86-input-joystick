@@ -122,7 +122,7 @@ AC_CONFIG_FILES([Makefile
                 man/Makefile
                 config/Makefile
                 include/Makefile
-                xorg-joystick.pc])
+               ])
 AC_OUTPUT
 
 # -----------------------------------------------------------------------------
