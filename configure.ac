@@ -43,19 +43,10 @@ m4_ifndef([XORG_MACROS_VERSION],
 XORG_MACROS_VERSION(1.8)
 XORG_DEFAULT_OPTIONS
 
-# Checks for pkg-config packages
+PKG_PROG_PKG_CONFIG([0.25])
 PKG_CHECK_MODULES(XORG, [xorg-server >= 25.0.0] xproto inputproto kbproto)
 
-# -----------------------------------------------------------------------------
-#                        Configuration options
-# -----------------------------------------------------------------------------
-# Define a configure option for an alternate input module directory
-PKG_PROG_PKG_CONFIG([0.25])
-AC_ARG_WITH(xorg-module-dir,
-            AS_HELP_STRING([--with-xorg-module-dir=DIR],
-                           [Default XLibre module directory]),
-            [moduledir="$withval"],
-            [moduledir=`$PKG_CONFIG --variable=moduledir xorg-server`])
+moduledir=`$PKG_CONFIG --variable=moduledir xorg-server`
 inputdir=${moduledir}/input
 AC_SUBST(inputdir)
 
