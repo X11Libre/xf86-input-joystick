@@ -20,10 +20,9 @@
 
 # During distcheck, system locations (as provided by pkg-config) may
 # not be writable; provide instead relative locations.
-DISTCHECK_CONFIGURE_FLAGS = --with-xorg-module-dir='$${libdir}/xorg/modules' \
-                            --with-sdkdir='$${includedir}/xorg'
+DISTCHECK_CONFIGURE_FLAGS = --with-xorg-module-dir='$${libdir}/xorg/modules'
 
-SUBDIRS = src man config include
+SUBDIRS = src man config
 MAINTAINERCLEANFILES = ChangeLog INSTALL
 
 .PHONY: ChangeLog INSTALL

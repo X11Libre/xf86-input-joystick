@@ -63,15 +63,6 @@ AC_ARG_WITH(xorg-module-dir,
 inputdir=${moduledir}/input
 AC_SUBST(inputdir)
 
-# Define a configure option for an alternate X Server SDK Headers
-# X Server SDK location is required to install joystick header files
-AC_ARG_WITH(sdkdir,
-            AS_HELP_STRING([--with-sdkdir=<path>],
-                           [XLibre X Server sdk headers (default is autodetected)]),
-            [sdkdir="$withval"],
-            [sdkdir=`$PKG_CONFIG --variable=sdkdir xorg-server`])
-AC_SUBST(sdkdir)
-
 # Define a configure option to enable code debugging
 AC_ARG_ENABLE(debug, AS_HELP_STRING([--disable-debug],
                                     [Disable debugging code (default: enabled)]),
@@ -118,7 +109,6 @@ AC_CONFIG_FILES([Makefile
                 src/Makefile
                 man/Makefile
                 config/Makefile
-                include/Makefile
                ])
 AC_OUTPUT
 
