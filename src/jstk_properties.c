@@ -286,11 +286,11 @@ jstkInitProperties(DeviceIntPtr pJstk, JoystickDevPtr priv)
 
     float_type = XIGetKnownProperty(XATOM_FLOAT);
     if (!float_type) {
-	float_type = MakeAtom(XATOM_FLOAT, strlen(XATOM_FLOAT), TRUE);
-	if (!float_type) {
-	    xf86Msg(X_WARNING, "%s: Failed to init float atom. "
-			       "Disabling support for float properties.\n", pJstk->name);
-	}
+        float_type = MakeAtom(XATOM_FLOAT, strlen(XATOM_FLOAT), TRUE);
+        if (!float_type) {
+            xf86Msg(X_WARNING, "%s: Failed to init float atom. "
+                               "Disabling support for float properties.\n", pJstk->name);
+        }
     }
 
 
@@ -370,13 +370,13 @@ jstkInitProperties(DeviceIntPtr pJstk, JoystickDevPtr priv)
 
     /* priv->axis[].amplify */
     if (float_type) {
-	for (i=0;i<priv->num_axes;i++)
-	    axes_floats[i] = priv->axis[i].amplify;
-	prop_axis_amplify = MakeAtom(JSTK_PROP_AXIS_AMPLIFY, strlen(JSTK_PROP_AXIS_AMPLIFY), TRUE);
-	XIChangeDeviceProperty(pJstk, prop_axis_amplify, float_type, 32,
-				PropModeReplace, priv->num_axes, axes_floats,
-				FALSE);
-	XISetDevicePropertyDeletable(pJstk, prop_axis_amplify, FALSE);
+        for (i=0;i<priv->num_axes;i++)
+            axes_floats[i] = priv->axis[i].amplify;
+        prop_axis_amplify = MakeAtom(JSTK_PROP_AXIS_AMPLIFY, strlen(JSTK_PROP_AXIS_AMPLIFY), TRUE);
+        XIChangeDeviceProperty(pJstk, prop_axis_amplify, float_type, 32,
+                                PropModeReplace, priv->num_axes, axes_floats,
+                                FALSE);
+        XISetDevicePropertyDeletable(pJstk, prop_axis_amplify, FALSE);
     }
 
     /* priv->axis[].keys_low */
@@ -428,13 +428,13 @@ jstkInitProperties(DeviceIntPtr pJstk, JoystickDevPtr priv)
 
     /* priv->button[].amplify */
     if (float_type) {
-	for (i=0;i<priv->num_buttons;i++)
-	    button_floats[i] = priv->button[i].amplify;
-	prop_button_amplify = MakeAtom(JSTK_PROP_BUTTON_AMPLIFY, strlen(JSTK_PROP_BUTTON_AMPLIFY), TRUE);
-	XIChangeDeviceProperty(pJstk, prop_button_amplify, float_type, 32,
-				PropModeReplace, priv->num_buttons, button_floats,
-				FALSE);
-	XISetDevicePropertyDeletable(pJstk, prop_button_amplify, FALSE);
+        for (i=0;i<priv->num_buttons;i++)
+            button_floats[i] = priv->button[i].amplify;
+        prop_button_amplify = MakeAtom(JSTK_PROP_BUTTON_AMPLIFY, strlen(JSTK_PROP_BUTTON_AMPLIFY), TRUE);
+        XIChangeDeviceProperty(pJstk, prop_button_amplify, float_type, 32,
+                                PropModeReplace, priv->num_buttons, button_floats,
+                                FALSE);
+        XISetDevicePropertyDeletable(pJstk, prop_button_amplify, FALSE);
     }
 
     /* priv->button[].keys */

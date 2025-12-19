@@ -38,11 +38,11 @@
 #define MIN_KEYCODE 8
 #define GLYPHS_PER_KEY 2
 
-#define AltMask		Mod1Mask
-#define NumLockMask	Mod2Mask
-#define AltLangMask	Mod3Mask
-#define KanaMask	Mod4Mask
-#define ScrollLockMask	Mod5Mask
+#define AltMask                Mod1Mask
+#define NumLockMask        Mod2Mask
+#define AltLangMask        Mod3Mask
+#define KanaMask        Mod4Mask
+#define ScrollLockMask        Mod5Mask
 
 static void
 jstkKbdCtrl(DeviceIntPtr device, KeybdCtrl *ctrl)
@@ -221,23 +221,23 @@ int jstkKeyboardPreInit(InputDriverPtr drv, InputInfoPtr pInfo, int flags)
 
     priv->rmlvo.rules = xf86SetStrOption(pInfo->options, "xkb_rules", NULL);
     if (!priv->rmlvo.rules)
-	priv->rmlvo.rules = xf86SetStrOption(pInfo->options, "XkbRules", "evdev");
+        priv->rmlvo.rules = xf86SetStrOption(pInfo->options, "XkbRules", "evdev");
 
     priv->rmlvo.model = xf86SetStrOption(pInfo->options, "xkb_model", NULL);
     if (!priv->rmlvo.model)
-	priv->rmlvo.model = xf86SetStrOption(pInfo->options, "XkbModel", "evdev");
+        priv->rmlvo.model = xf86SetStrOption(pInfo->options, "XkbModel", "evdev");
 
     priv->rmlvo.layout = xf86SetStrOption(pInfo->options, "xkb_layout", NULL);
     if (!priv->rmlvo.layout)
-	priv->rmlvo.layout = xf86SetStrOption(pInfo->options, "XkbLayout", "us");
+        priv->rmlvo.layout = xf86SetStrOption(pInfo->options, "XkbLayout", "us");
 
     priv->rmlvo.variant = xf86SetStrOption(pInfo->options, "xkb_variant", NULL);
     if (!priv->rmlvo.variant)
-	priv->rmlvo.variant = xf86SetStrOption(pInfo->options, "XkbVariant", "");
+        priv->rmlvo.variant = xf86SetStrOption(pInfo->options, "XkbVariant", "");
 
     priv->rmlvo.options = xf86SetStrOption(pInfo->options, "xkb_options", NULL);
     if (!priv->rmlvo.options)
-	priv->rmlvo.options = xf86SetStrOption(pInfo->options, "XkbOptions", "");
+        priv->rmlvo.options = xf86SetStrOption(pInfo->options, "XkbOptions", "");
 
     return Success;
 }

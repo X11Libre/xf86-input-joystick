@@ -232,7 +232,7 @@ jstkParseAxisOption(const char* org,
             for (value = 0; value < MAXKEYSPERBUTTON; value++)
                 if (current != NULL) {
                     next = strchr(current, ',');
-		    if (!next) next = strchr(current, '+');
+                    if (!next) next = strchr(current, '+');
                     if (next) *(next++) = '\0';
 
                     key = strtol(current, NULL, 0);

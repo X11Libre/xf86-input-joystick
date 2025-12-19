@@ -31,4 +31,5 @@ int jstkKeyboardPreInit(InputDriverPtr pInfo, InputInfoPtr dev, int flags);
 void jstkKeyboardUnInit(InputDriverPtr drv, InputInfoPtr pInfo, int flags);
 Bool jstkKeyboardDeviceControlProc(DeviceIntPtr dev, int what);
 InputInfoPtr jstkKeyboardHotplug(InputInfoPtr dev, int flags);
+
 #endif

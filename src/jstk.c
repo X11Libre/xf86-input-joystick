@@ -30,7 +30,7 @@
 #include <misc.h>
 #include <xf86.h>
 #include <xf86Xinput.h>
-#include <exevents.h>		/* Needed for InitValuator/Proximity stuff */
+#include <exevents.h>                /* Needed for InitValuator/Proximity stuff */
 #include <xf86Opt.h>
 #include <xf86_OSproc.h>
 
@@ -413,7 +413,7 @@ jstkDeviceControlProc(DeviceIntPtr       pJstk,
             xf86MotionHistoryAllocate(pInfo);
         }
 
-	jstkInitProperties(pJstk, priv);
+        jstkInitProperties(pJstk, priv);
 
         break;
     }
@@ -668,21 +668,21 @@ jstkCoreUnInit(InputDriverPtr    drv,
                int               flags)
 {
     if (pInfo->private) {
-	JoystickDevPtr priv = (JoystickDevPtr) pInfo->private;
-	if (priv->keyboard_device == pInfo) {
-	    /* this is the keyboard device */
-	    /* Unlink from private data to notify that the
-	     * keyboard device is no more, but don't free */
-	    priv->keyboard_device = NULL;
-	} else {
-	    /* freeing main device
-	       if keyboard still exists, notify keyboard device that it's
-	       private data is gone */
-	    if (priv->keyboard_device)
-		priv->keyboard_device->private = NULL;
+        JoystickDevPtr priv = (JoystickDevPtr) pInfo->private;
+        if (priv->keyboard_device == pInfo) {
+            /* this is the keyboard device */
+            /* Unlink from private data to notify that the
+             * keyboard device is no more, but don't free */
+            priv->keyboard_device = NULL;
+        } else {
+            /* freeing main device
+               if keyboard still exists, notify keyboard device that it's
+               private data is gone */
+            if (priv->keyboard_device)
+                priv->keyboard_device->private = NULL;
 
-	    free (priv);
-	}
+            free (priv);
+        }
     }
 
     pInfo->private = NULL;

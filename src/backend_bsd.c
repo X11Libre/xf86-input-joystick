@@ -175,7 +175,7 @@ jstkOpenDevice_bsd(JoystickDevPtr joystick, Bool probe)
                 memcpy(&bsddata->button_item[joystick->num_buttons], &h, sizeof(h));
                 joystick->num_buttons++;
             }
-	}
+        }
     }
     hid_end_parse(d);
 

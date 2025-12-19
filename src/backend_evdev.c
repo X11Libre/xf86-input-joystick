@@ -189,7 +189,7 @@ jstkOpenDevice_evdev(JoystickDevPtr joystick, Bool probe)
 
     if (probe == TRUE) {
         xf86Msg(X_INFO, "Joystick: %s. bus 0x%x vendor 0x%x product 0x%x version 0x%x\n",
-	    name, id.bustype, id.vendor, id.product, id.version);
+            name, id.bustype, id.vendor, id.product, id.version);
         xf86Msg(X_INFO, "Joystick: found %d axes, %d buttons\n", axes, buttons);
     }
 
@@ -278,29 +278,29 @@ jstkReadData_evdev(JoystickDevPtr joystick,
             struct jstk_evdev_axis_data *axis;
             axis = &data->axis[iev.code];
             if ((axis->number >= 0) && (axis->number < MAXAXES)) {
-		/* NOTE: controllers report totally different ranges:
-		 * - 0..256, with a center of 127 (Logitech Dual Action axes)
-		 * - 0..256 with a center of 0 (XBox left/right triggers)
-		 * - -32768..32768 with a center of 0 (XBox axes)
-		 *
-		 * These ranges will ALL be scaled to -32768..32768, with
-		 * the center value to be assumed 0. This is for compatibility
-		 * with the legacy joystick module, which reports values in
-		 * the same range.
-		 *
-		 * The value is also important for the deadzone, which can be
-		 * configured by the user and is in -32768..32768 range.
-		 *
-		 * TODO: how to respect center value, so that that XBox triggers
-		 *       and logitech axes report idle, when not moved?
-		 * TODO: report all values as -1.0f..1.0f, but this would possibly
-		 *       break config file semantics.
-		 */
+                /* NOTE: controllers report totally different ranges:
+                 * - 0..256, with a center of 127 (Logitech Dual Action axes)
+                 * - 0..256 with a center of 0 (XBox left/right triggers)
+                 * - -32768..32768 with a center of 0 (XBox axes)
+                 *
+                 * These ranges will ALL be scaled to -32768..32768, with
+                 * the center value to be assumed 0. This is for compatibility
+                 * with the legacy joystick module, which reports values in
+                 * the same range.
+                 *
+                 * The value is also important for the deadzone, which can be
+                 * configured by the user and is in -32768..32768 range.
+                 *
+                 * TODO: how to respect center value, so that that XBox triggers
+                 *       and logitech axes report idle, when not moved?
+                 * TODO: report all values as -1.0f..1.0f, but this would possibly
+                 *       break config file semantics.
+                 */
 
-		float v = (float) iev.value;
-		v = (v - (float)axis->min) * 65535.0f
-			/ (axis->max - axis->min) - 32768.0f;
-		value = (int) v;
+                float v = (float) iev.value;
+                v = (v - (float)axis->min) * 65535.0f
+                        / (axis->max - axis->min) - 32768.0f;
+                value = (int) v;
 
                 if (abs(value) < joystick->axis[axis->number].deadzone) {
                     /* We only want one event when in deadzone */

@@ -47,7 +47,7 @@ XORG_DEFAULT_OPTIONS
 PKG_CHECK_MODULES(XORG, [xorg-server >= 25.0.0] xproto inputproto kbproto)
 
 # -----------------------------------------------------------------------------
-#			Configuration options
+#                        Configuration options
 # -----------------------------------------------------------------------------
 # Define a configure option for an alternate input module directory
 PKG_PROG_PKG_CONFIG([0.25])
@@ -69,7 +69,7 @@ fi
 AM_CONDITIONAL(DEBUG, [test "x$DEBUGGING" = xyes])
 
 # -----------------------------------------------------------------------------
-#		Determine which joystick backend to build
+#                Determine which joystick backend to build
 # -----------------------------------------------------------------------------
 linux_backend=yes
 AC_CHECK_HEADERS([linux/joystick.h],, [linux_backend=no])
