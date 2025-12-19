@@ -99,16 +99,9 @@ AM_CONDITIONAL(EVDEV_BACKEND, [test "x$evdev_backend" = xyes])
 if test "x$evdev_backend" = xyes; then
     AC_DEFINE(EVDEV_BACKEND, 1, [Compile Linux evdev backend])
 fi
-# -----------------------------------------------------------------------------
 
-AC_CONFIG_FILES([Makefile
-                src/Makefile
-                man/Makefile
-                config/Makefile
-               ])
+AC_CONFIG_FILES([Makefile src/Makefile man/Makefile config/Makefile])
 AC_OUTPUT
-
-# -----------------------------------------------------------------------------
 
 AS_ECHO()
 AS_ECHO("Building Linux joystick backend: $linux_backend")
@@ -116,10 +109,9 @@ AS_ECHO("Building Linux evdev backend: $evdev_backend")
 AS_ECHO("Building BSD usbhid backend: $bsd_backend")
 
 if test "x$linux_backend" != "xyes" -a \
-	"x$bsd_backend" != "xyes" -a \
-	"x$evdev_backend" != "xyes"; then
+        "x$bsd_backend" != "xyes" -a \
+        "x$evdev_backend" != "xyes"; then
     AC_MSG_ERROR([No backends were found. Your operating system is not
                   supported by the joystick driver. Contact
-                  xorg@lists.freedesktop.org if you are interested in
-                  porting it.])
+                  xlibre@freelists.org if you are interested in porting it.])
 fi
