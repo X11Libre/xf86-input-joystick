@@ -43,12 +43,8 @@ m4_ifndef([XORG_MACROS_VERSION],
 XORG_MACROS_VERSION(1.8)
 XORG_DEFAULT_OPTIONS
 
-# Checks for extensions
-XORG_DRIVER_CHECK_EXT(XINPUT, inputproto)
-XORG_DRIVER_CHECK_EXT(XKB, kbproto)
-
 # Checks for pkg-config packages
-PKG_CHECK_MODULES(XORG, [xorg-server >=  1.18.99.2] xproto $REQUIRED_MODULES)
+PKG_CHECK_MODULES(XORG, [xorg-server >= 25.0.0] xproto inputproto kbproto)
 
 # -----------------------------------------------------------------------------
 #			Configuration options
