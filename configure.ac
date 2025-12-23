@@ -69,15 +69,16 @@ if test "x$linux_backend" = xyes; then
     AC_DEFINE(LINUX_BACKEND, 1, [Compile Linux joystick backend])
 fi
 
-bsd_backend=yes
-AC_CHECK_HEADERS([dev/usb/usb.h])
-AC_CHECK_HEADERS([usbhid.h dev/usb/usbhid.h],, [bsd_backend=no],
-[[#if HAVE_DEV_USB_USB_H
-#include <dev/usb/usb.h>
-#endif
-]])
-AC_CHECK_HEADERS([dev/hid/hid.h])
-AC_CHECK_LIB([usbhid],[hid_get_item],, [bsd_backend=no])
+bsd_backend=no
+case $host_os in
+*dragonfly*)
+  AC_CHECK_HEADERS([bus/u4b/usb.h bus/u4b/usbhid.h], [bsd_backend=yes])
+  ;;
+*)
+  AC_CHECK_HEADERS([dev/usb/usbhid.h], [bsd_backend=yes])
+  ;;
+esac
+
 AM_CONDITIONAL(BSD_BACKEND, [test "x$bsd_backend" = xyes])
 if test "x$bsd_backend" = xyes; then
     AC_CHECK_HEADERS([dev/usb/usb_ioctl.h])

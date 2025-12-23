@@ -40,8 +40,21 @@
 #include <xf86_OSproc.h>
 
 #include <usbhid.h>
+
+#ifdef __DragonFly__
+
+#include <bus/u4b/usb.h>
+#include <bus/u4b/usbhid.h>
+
+#define USB_GET_REPORT_ID UR_GET_REPORT
+
+#else /* __DragonFly__ */
+
 #include <dev/usb/usb.h>
 #include <dev/usb/usbhid.h>
+
+#endif /* __DragonFly__ */
+
 #ifdef HAVE_DEV_HID_HID_H
     #include <dev/hid/hid.h>
 #endif
