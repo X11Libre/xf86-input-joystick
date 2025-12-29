@@ -74,6 +74,9 @@ case $host_os in
 *dragonfly*)
   AC_CHECK_HEADERS([bus/u4b/usb.h bus/u4b/usbhid.h], [bsd_backend=yes])
   ;;
+*netbsd*)
+  bsd_backend=yes
+  ;;
 *)
   AC_CHECK_HEADERS([dev/usb/usbhid.h], [bsd_backend=yes])
   ;;
