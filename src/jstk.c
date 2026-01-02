@@ -715,9 +715,9 @@ _X_EXPORT InputDriverRec JOYSTICK = {
  ***************************************************************************
  */
 
-static pointer
-jstkDriverPlug(pointer  module,
-               pointer  options,
+static void *
+jstkDriverPlug(void *module,
+               void *options,
                int      *errmaj,
                int      *errmin)
 {
@@ -737,7 +737,7 @@ jstkDriverPlug(pointer  module,
  */
 
 static void
-jstkDriverUnplug(pointer p)
+jstkDriverUnplug(void *p)
 {
 }
 

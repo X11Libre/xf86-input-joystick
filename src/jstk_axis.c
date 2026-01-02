@@ -47,7 +47,7 @@
 static CARD32
 jstkAxisTimer(OsTimerPtr        timer,
               CARD32            atime,
-              pointer           arg)
+              void *arg)
 {
     #define NEXTTIMER 15
     DeviceIntPtr          device = (DeviceIntPtr)arg;
@@ -449,7 +449,7 @@ jstkHandleAbsoluteAxis(InputInfoPtr device, int number)
 static CARD32
 jstkPWMAxisTimer(OsTimerPtr        timer,
                  CARD32            atime,
-                 pointer           arg)
+                 void *arg)
 {
     DeviceIntPtr          device = (DeviceIntPtr)arg;
     InputInfoPtr          pInfo = device->public.devicePrivate;
