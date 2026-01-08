@@ -1,6 +1,6 @@
 .\" shorthand for double quote that works everywhere.
 .ds q \N'34'
-.TH JOYSTICK __drivermansuffix__ 2012-10-03 __vendorversion__
+.TH JOYSTICK @DRIVER_MAN_SUFFIX@ 2012-10-03 "@PACKAGE_STRING@" "X Version 11"
 .SH NAME
 joystick \- XLibre input driver for using a joystick as a mouse
 .SH SYNOPSIS
@@ -63,7 +63,7 @@ There is no support for
 at the moment.
 .SH CONFIGURATION DETAILS
 Please refer to
-.BR xorg.conf (__filemansuffix__)
+.BR xorg.conf (@FILE_MAN_SUFFIX@)
 for general configuration details.
 This section only covers configuration details specific to this driver.
 .PP
@@ -441,11 +441,11 @@ An example hal policy file is still provided in
 to be placed in
 .IR /etc/hal/fdi/policy .
 .SH "SEE ALSO"
-.BR XLibre (__appmansuffix__),
-.BR xorg.conf (__filemansuffix__),
+.BR XLibre (@APP_MAN_SUFFIX@),
+.BR xorg.conf (@FILE_MAN_SUFFIX@),
 .BR xorg.conf.d (5),
-.BR Xserver (__appmansuffix__),
-.BR X (__miscmansuffix__),
+.BR Xserver (@APP_MAN_SUFFIX@),
+.BR X (@MISC_MAN_SUFFIX@),
 .BR xmodmap (1)
 .SH AUTHORS
 Sascha Hlusiak (2007-2012),
