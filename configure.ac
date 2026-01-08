@@ -95,8 +95,7 @@ if test "x$evdev_backend" = xyes; then
     AC_DEFINE(EVDEV_BACKEND, 1, [Compile Linux evdev backend])
 fi
 
-AC_CONFIG_FILES([Makefile src/Makefile man/Makefile config/Makefile])
-AC_OUTPUT
+AC_OUTPUT([Makefile src/Makefile man/Makefile man/joystick.man config/Makefile])
 
 AS_ECHO()
 AS_ECHO("Building Linux joystick backend: $linux_backend")

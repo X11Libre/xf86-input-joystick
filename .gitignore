@@ -43,6 +43,7 @@ stamp-h?
 symlink-tree
 texinfo.tex
 ylwrap
+man/joystick.man
 
 #	Do not edit the following section
 # 	Edit Compile Debug Document Distribute
