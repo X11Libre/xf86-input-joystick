@@ -46,9 +46,8 @@ XORG_DEFAULT_OPTIONS
 PKG_PROG_PKG_CONFIG([0.25])
 PKG_CHECK_MODULES(XORG, [xorg-server >= 25.0.0] xproto inputproto kbproto)
 
-moduledir=`$PKG_CONFIG --variable=moduledir xorg-server`
-inputdir=${moduledir}/input
-AC_SUBST(inputdir)
+xlibre_input_drivers_dir=`$PKG_CONFIG --variable=input_drivers_dir xlibre-server`
+AC_SUBST(xlibre_input_drivers_dir)
 
 # Define a configure option to enable code debugging
 AC_ARG_ENABLE(debug, AS_HELP_STRING([--disable-debug],
