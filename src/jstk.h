@@ -128,5 +128,6 @@ typedef struct _JoystickDevRec {
 } JoystickDevRec;
 
 void jstkCloseDevice(JoystickDevPtr priv);
+void jstkInitProperties(DeviceIntPtr pJstk, JoystickDevPtr priv);
 
 #endif

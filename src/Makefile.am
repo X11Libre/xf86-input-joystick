@@ -37,7 +37,7 @@ joystick_drv_la_SOURCES =  jstk.c jstk.h \
 				jstk_axis.c jstk_axis.h \
 				jstk_key.c jstk_key.h \
 				jstk_options.c jstk_options.h \
-				jstk_properties.c jstk_properties.h
+				jstk_properties.c
 
 BSD_SRCS   = backend_bsd.c backend_bsd.h
 LINUX_SRCS = backend_joystick.c backend_joystick.h

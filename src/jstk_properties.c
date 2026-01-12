@@ -32,7 +32,6 @@
 #include <exevents.h>
 
 #include "jstk.h"
-#include "jstk_properties.h"
 #include "joystick-properties.h" /* definitions of properties */
 
 
@@ -272,8 +271,7 @@ jstkSetProperty(DeviceIntPtr pJstk, Atom atom, XIPropertyValuePtr val,
     return Success;
 }
 
-Bool
-jstkInitProperties(DeviceIntPtr pJstk, JoystickDevPtr priv)
+void jstkInitProperties(DeviceIntPtr pJstk, JoystickDevPtr priv)
 {
     INT32 axes_values32[MAXAXES];
     INT8  axes_values8[MAXAXES*MAXKEYSPERBUTTON];
@@ -292,7 +290,6 @@ jstkInitProperties(DeviceIntPtr pJstk, JoystickDevPtr priv)
                                "Disabling support for float properties.\n", pJstk->name);
         }
     }
-
 
 #ifdef DEBUG
     /* Debug Level */
@@ -447,6 +444,4 @@ jstkInitProperties(DeviceIntPtr pJstk, JoystickDevPtr priv)
                                 button_values8,
                                 FALSE);
     XISetDevicePropertyDeletable(pJstk, prop_button_keys, FALSE);
-
-    return TRUE;
 }

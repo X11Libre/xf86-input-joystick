@@ -42,7 +42,6 @@
 #include "jstk_axis.h"
 #include "jstk_key.h"
 #include "jstk_options.h"
-#include "jstk_properties.h"
 #include <xserver-properties.h>
 
 #ifdef LINUX_BACKEND
