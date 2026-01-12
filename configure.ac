@@ -56,7 +56,6 @@ AC_ARG_ENABLE(debug, AS_HELP_STRING([--disable-debug],
 if test "x$DEBUGGING" = xyes; then
    AC_DEFINE(DEBUG, 1, [Enable debugging code])
 fi
-AM_CONDITIONAL(DEBUG, [test "x$DEBUGGING" = xyes])
 
 # -----------------------------------------------------------------------------
 #                Determine which joystick backend to build
