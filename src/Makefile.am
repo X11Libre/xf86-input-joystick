@@ -29,7 +29,7 @@ AM_CFLAGS = $(XORG_CFLAGS) $(CWARNFLAGS)
 
 joystick_drv_la_LTLIBRARIES = joystick_drv.la
 joystick_drv_la_LDFLAGS = -module -avoid-version
-joystick_drv_ladir = @inputdir@
+joystick_drv_ladir = @xlibre_input_drivers_dir@
 
 AM_CPPFLAGS = -I$(top_srcdir)/include
 
