@@ -26,6 +26,6 @@
 
 #include "jstk.h"
 
-Bool jstkInitProperties(DeviceIntPtr pJstk, JoystickDevPtr priv);
+void jstkInitProperties(DeviceIntPtr pJstk, JoystickDevPtr priv);
 
 #endif
