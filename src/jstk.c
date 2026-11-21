@@ -749,6 +749,11 @@ jstkDriverUnplug(void *p)
  *
  ***************************************************************************
  */
+#define JSTK_VERSION_MAJOR	PACKAGE_VERSION_MAJOR
+#define JSTK_VERSION_MINOR	PACKAGE_VERSION_MINOR
+#define JSTK_VERSION_PATCH	PACKAGE_VERSION_PATCHLEVEL
+#define JSTK_VERSION_SUFFIX	PACKAGE_VERSION_SUFFIX
+
 static XF86ModuleVersionInfo jstkVersionRec =
 {
     "joystick",
@@ -756,9 +761,9 @@ static XF86ModuleVersionInfo jstkVersionRec =
     MODINFOSTRING1,
     MODINFOSTRING2,
     XORG_VERSION_CURRENT,
-    PACKAGE_VERSION_MAJOR,
-    PACKAGE_VERSION_MINOR,
-    PACKAGE_VERSION_PATCHLEVEL,
+    JSTK_VERSION_MAJOR,
+    JSTK_VERSION_MINOR,
+    JSTK_VERSION_PATCH,
     ABI_CLASS_XINPUT,
     ABI_XINPUT_VERSION,
     MOD_CLASS_XINPUT,
@@ -778,5 +783,9 @@ _X_EXPORT XF86ModuleData joystickModuleData = {
     jstkDriverPlug,
     jstkDriverUnplug
 };
+
+#ifdef XF86_MODULE_VERSION_SUFFIX
+XF86_MODULE_VERSION_SUFFIX(joystick, JSTK_VERSION_SUFFIX);
+#endif
 
 /* vim: set filetype=c.doxygen ts=4 et: */
